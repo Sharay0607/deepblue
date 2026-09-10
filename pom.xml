@@ -10,11 +10,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>edu.coursehub</groupId>
-    <artifactId>coursehub-persistence</artifactId>
+    <groupId>com.deepblue</groupId>
+    <artifactId>deepblue-rescue</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>coursehub-persistence</name>
-    <description>Laboratorio universitario de persistencia con Spring Boot 4</description>
+    <name>deepblue-rescue</name>
+    <description>Laboratorio de persistencia con Spring Boot 4 - DeepBlue Rescue</description>
 
     <properties>
         <java.version>21</java.version>
