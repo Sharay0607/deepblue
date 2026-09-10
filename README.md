@@ -1,27 +1,44 @@
-# CourseHub — Student Lab
+# DeepBlue Rescue — Capa de persistencia
 
-Este repositorio es el punto de partida del laboratorio.
+## 1\. Descripción
 
-## Regla principal
+Laboratorio de persistencia con **Java 21, Spring Boot 4, Spring Data JPA, Hibernate, Flyway,
+PostgreSQL y Testcontainers**. Modela el dominio de **DeepBlue Rescue**, una plataforma para
+centros de rescate y rehabilitación de fauna marina. Cubre exclusivamente la capa de
+persistencia: no incluye controllers, servicios, DTOs ni seguridad.
 
-No copies la solución de otra persona. Antes de escribir código, dibuja el modelo y predice el SQL.
+## 2\. Modelo de datos
 
-## Ejecutar
+```text
+rescue\_centers
+rescue\_cases
+animals
+medical\_records
+specialists
+expertise
+specialist\_expertise   (tabla asociativa)
+treatments
+```
+
+## 3\. Relaciones
+
+```text
+RescueCenter   1 ────── N   RescueCase
+RescueCase     1 ────── 1   Animal
+Animal         1 ────── 1   MedicalRecord
+Specialist     N ────── M   Expertise   (vía specialist\_expertise)
+Animal         1 ────── N   Treatment
+Specialist     1 ────── N   Treatment
+```
+
+## 4\. Ejecutar la aplicación
+
+Requiere una instancia de PostgreSQL disponible (por ejemplo con Docker):
 
 ```bash
-mvn test
+docker compose up -d
+mvn spring-boot:run
 ```
 
-Los ejercicios con `@Disabled` se irán habilitando durante el curso.
+## 
 
-## Buscar tareas pendientes
-
-```bash
-grep -R "TODO-STUDENT" -n src
-```
-
-En Windows PowerShell:
-
-```powershell
-Get-ChildItem -Recurse src | Select-String "TODO-STUDENT"
-```
