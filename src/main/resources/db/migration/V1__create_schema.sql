@@ -37,7 +37,7 @@ CREATE TABLE animals (
     common_name      VARCHAR(150) NOT NULL,
     scientific_name  VARCHAR(150) NOT NULL,
     sex              VARCHAR(20)  NOT NULL,
-    rescue_case_id   BIGINT       NOT NULL,
+    rescue_case_id   BIGINT       ,
     CONSTRAINT uk_animals_animal_code UNIQUE (animal_code),
     CONSTRAINT uk_animals_rescue_case_id UNIQUE (rescue_case_id),
     CONSTRAINT fk_animals_rescue_case
