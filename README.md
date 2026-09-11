@@ -95,3 +95,9 @@ reales (UNIQUE, FK, CHECK) que un H2 en memoria no reproduciría fielmente.
   determinada experiencia (N:M).
 - `AnimalRepository.findInRehabilitationTreatedBySpecialistWithExpertise` — reto final:
   animales en rehabilitación tratados por un especialista con determinada experiencia.
+
+## Verificación
+
+Se ejecutó `mvn clean test` con todos los 16 tests de `PersistenceIntegrationTest`
+(tanto de forma individual como la clase completa) obteniendo `BUILD SUCCESS`. Asi mismo, se probó el funcionamiento
+de los test tanto corriendo la clase completa como usando maven for java.
