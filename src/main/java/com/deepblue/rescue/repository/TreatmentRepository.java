@@ -13,6 +13,10 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Long> {
     // Tratamientos de un animal ordenados cronologicamente.
     List<Treatment> findByAnimalIdOrderByPerformedAtAsc(Long animalId);
 
+    // Igual que la anterior, pero navegando por el codigo de negocio del animal
+    // en vez de su id tecnico (util desde la capa Service, que trabaja con codes).
+    List<Treatment> findByAnimalAnimalCodeOrderByPerformedAtAsc(String animalCode);
+
     // Tratamientos realizados entre dos fechas.
     @Query("""
             select t
