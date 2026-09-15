@@ -84,7 +84,24 @@ reales (UNIQUE, FK, CHECK) que un H2 en memoria no reproduciría fielmente.
 - `ExpertiseRepository.findByNameIgnoreCase`
 - `TreatmentRepository.findByAnimalIdOrderByPerformedAtAsc`
 
-## 9. Consultas JPQL (`@Query`) implementadas
+## 9. Capa de servicio
+
+Sobre la capa de persistencia se agregó una capa `service/` que:
+
+- Expone DTOs (`record`) en vez de entidades directamente (`RescueCaseResponse`, `TreatmentResponse`,
+  `AnimalResponse`), transformados con **MapStruct**.
+- Aplica reglas de negocio antes de guardar: transición de estados válida en `RescueCaseService`,
+  y en `TreatmentService` — animal/especialista deben existir, el especialista debe estar activo,
+  el caso no puede estar `RELEASED`/`CLOSED`, y la fecha del tratamiento no puede ser anterior a la
+  fecha de rescate.
+- Distingue `ResourceNotFoundException` (el recurso no existe) de `BusinessRuleException` (el
+  recurso existe, pero la operación no está permitida).
+- Usa `@Transactional(readOnly = true)` a nivel de clase y `@Transactional` en los métodos que
+  escriben.
+- Se prueba con **unit tests** (`JUnit + Mockito + AssertJ`), sin levantar Spring ni PostgreSQL —
+  los repositories se reemplazan con `@Mock`.
+
+## 10. Consultas JPQL (`@Query`) implementadas
 
 - `SpecialistRepository.findActiveByExpertise` — especialistas activos con determinada
   experiencia.
@@ -95,9 +112,3 @@ reales (UNIQUE, FK, CHECK) que un H2 en memoria no reproduciría fielmente.
   determinada experiencia (N:M).
 - `AnimalRepository.findInRehabilitationTreatedBySpecialistWithExpertise` — reto final:
   animales en rehabilitación tratados por un especialista con determinada experiencia.
-
-## Verificación
-
-Se ejecutó `mvn clean test` con todos los 16 tests de `PersistenceIntegrationTest`
-(tanto de forma individual como la clase completa) obteniendo `BUILD SUCCESS`. Asi mismo, se probó el funcionamiento
-de los test tanto corriendo la clase completa como usando maven for java.
