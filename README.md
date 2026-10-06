@@ -51,33 +51,6 @@ El proyecto se construyó por capas, cada una con una responsabilidad única y s
 
 ## 2. 🏛️ Arquitectura por capas
 
-```mermaid
-flowchart LR
-    C([Cliente HTTP]) -->|JSON| CT
-
-    subgraph API["🌐 Controlador"]
-        CT[Controllers<br/>@RestController]
-        EH[GlobalExceptionHandler<br/>@RestControllerAdvice]
-    end
-
-    subgraph SV["⚙️ Servicio"]
-        S[Services<br/>reglas de negocio<br/>@Transactional]
-        M[Mappers<br/>MapStruct]
-    end
-
-    subgraph PR["🗄️ Persistencia"]
-        R[Repositories<br/>Spring Data JPA]
-        DB[(PostgreSQL<br/>+ Flyway)]
-    end
-
-    CT -->|DTO request| S
-    S --> M
-    S --> R
-    R --> DB
-    S -.->|BusinessRuleException<br/>ResourceNotFoundException| EH
-    EH -.->|ErrorResponse<br/>400 · 404 · 409 · 500| C
-    CT -->|DTO response| C
-```
 
 **Regla de oro:** cada capa solo habla con la inmediatamente inferior.
 
