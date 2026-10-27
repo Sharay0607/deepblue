@@ -1,6 +1,7 @@
 import { useAnimal } from '../hooks/useAnimal'
 import ErrorMessage from './ErrorMessage'
 import TreatmentList from './TreatmentList'
+import ChangeStatus from './ChangeStatus'
 
 export default function CaseDetail({ caseItem, onChanged }) {
   const { animal, treatments, eligibility } = useAnimal(caseItem.animalCode)
@@ -16,6 +17,16 @@ export default function CaseDetail({ caseItem, onChanged }) {
           <strong>Fecha:</strong> {caseItem.rescueDate}
         </p>
       </section>
+
+      <ChangeStatus
+        key={caseItem.caseCode}
+        caseItem={caseItem}
+        onChanged={onChanged}
+      />
+
+
+
+
 
       <section>
         <h3>Animal {caseItem.animalCode}</h3>
