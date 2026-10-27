@@ -1,23 +1,26 @@
 spring:
+
   application:
-    name: coursehub-persistence
+    name: deepblue-rescue
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/coursehub}
-    username: ${DB_USERNAME:coursehub}
-    password: ${DB_PASSWORD:coursehub}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/deepblue}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
 
   jpa:
+
     open-in-view: false
+
     hibernate:
       ddl-auto: validate
+
+    show-sql: true
+
     properties:
       hibernate:
         format_sql: true
 
   flyway:
     enabled: true
-
-logging:
-  level:
-    org.hibernate.SQL: INFO
+    locations: classpath:db/migration

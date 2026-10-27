@@ -2,18 +2,13 @@ services:
   postgres:
     image: postgres:18-alpine
     environment:
-      POSTGRES_DB: coursehub
-      POSTGRES_USER: coursehub
-      POSTGRES_PASSWORD: coursehub
+      POSTGRES_DB: deepblue
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U coursehub -d coursehub"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
     volumes:
-      - coursehub_pgdata:/var/lib/postgresql/data
+      - deepblue_data:/var/lib/postgresql/data
 
 volumes:
-  coursehub_pgdata:
+  deepblue_data:
