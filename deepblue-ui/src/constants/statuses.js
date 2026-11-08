@@ -1,0 +1,8 @@
+export const STATUSES = [
+  'ADMITTED',
+  'UNDER_EVALUATION',
+  'IN_REHABILITATION',
+  'READY_FOR_RELEASE',
+  'RELEASED',
+  'CLOSED',
+]
