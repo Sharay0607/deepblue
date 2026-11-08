@@ -1,15 +1,8 @@
 import { useState } from 'react'
 import { useRescueCases } from '../hooks/useRescueCases'
 import ErrorMessage from './ErrorMessage'
+import { STATUSES } from '../constants/statuses'
 
-export const STATUSES = [
-  'ADMITTED',
-  'UNDER_EVALUATION',
-  'IN_REHABILITATION',
-  'READY_FOR_RELEASE',
-  'RELEASED',
-  'CLOSED',
-]
 
 export default function CaseList({ selected, onSelect }) {
   const [status, setStatus] = useState('ADMITTED')

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { changeCaseStatus } from '../api/rescueCases'
-import { STATUSES } from './CaseList'
+import { STATUSES } from '../constants/statuses'
 import ErrorMessage from './ErrorMessage'
 
 export default function ChangeStatus({ caseItem, onChanged }) {
